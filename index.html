@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Daily Planner</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="top-bar">
+
+      <h1>Daily Planner</h1>
+
+      <button onclick="toggleDarkMode()">
+        Dark Mode
+      </button>
+
+    </div>
+
+    <div class="task-input">
+
+      <input type="text"
+             id="taskInput"
+             placeholder="Enter task">
+
+      <input type="time"
+             id="taskTime">
+
+      <select id="taskPriority">
+
+        <option value="High">
+          High
+        </option>
+
+        <option value="Medium">
+          Medium
+        </option>
+
+        <option value="Low">
+          Low
+        </option>
+
+      </select>
+
+      <button onclick="addTask()">
+        Add
+      </button>
+
+    </div>
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search task..."
+      onkeyup="displayTasks()"
+    >
+
+    <br><br>
+
+    <button onclick="clearCompleted()">
+      Clear Completed Tasks
+    </button>
+
+    <div class="progress-section">
+
+      <h3>Progress</h3>
+
+      <div class="progress-bar">
+
+        <div id="progressFill"></div>
+
+      </div>
+
+      <p id="progressText">
+        0% Completed
+      </p>
+
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <hr>
+
+    <h2>Water Tracker</h2>
+
+    <p id="waterStatus">
+      0 / 10 Glasses Completed
+    </p>
+
+    <div class="progress-bar">
+
+      <div id="waterProgress"></div>
+
+    </div>
+
+    <br>
+
+    <button onclick="drinkWater()">
+      Drink Water
+    </button>
+
+    <button onclick="resetWater()">
+      Reset Water
+    </button>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

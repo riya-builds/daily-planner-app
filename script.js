@@ -1,5 +1,7 @@
 Notification.requestPermission();
 
+const waterGoal = 10;
+
 let water = localStorage.getItem("water")
   ? parseInt(localStorage.getItem("water"))
   : 0;
@@ -12,16 +14,13 @@ let darkMode =
   localStorage.getItem("darkMode") === "true";
 
 if (darkMode) {
-
   document.body.classList.add("dark");
 }
 
 displayTasks();
-
 updateWater();
 
 function saveTasks() {
-
   localStorage.setItem(
     "tasks",
     JSON.stringify(tasks)
@@ -29,7 +28,6 @@ function saveTasks() {
 }
 
 function saveWater() {
-
   localStorage.setItem("water", water);
 }
 
@@ -51,22 +49,15 @@ function addTask() {
     ).value;
 
   if (text === "") {
-
     alert("Please enter a task");
-
     return;
   }
 
   tasks.push({
-
     text: text,
-
     time: time,
-
     priority: priority,
-
     completed: false,
-
     notified: false
   });
 
@@ -75,7 +66,6 @@ function addTask() {
   displayTasks();
 
   taskInput.value = "";
-
   taskTime.value = "";
 }
 
@@ -98,7 +88,6 @@ function displayTasks() {
         .toLowerCase()
         .includes(searchText)
     ) {
-
       return;
     }
 
@@ -122,45 +111,41 @@ function displayTasks() {
     checkbox.onchange =
       function () {
 
-      tasks[index].completed =
-        checkbox.checked;
+        tasks[index].completed =
+          checkbox.checked;
 
-      saveTasks();
+        saveTasks();
 
-      displayTasks();
-    };
+        displayTasks();
+      };
 
     let span =
       document.createElement("span");
 
     span.innerText =
-      task.text
-      + " | "
-      + task.time
-      + " | "
-      + task.priority;
+      task.text +
+      " | " +
+      task.time +
+      " | " +
+      task.priority;
 
     if (task.completed) {
-
       span.classList.add(
         "completed"
       );
     }
 
     if (task.priority === "High") {
-
       li.style.borderLeft =
         "6px solid red";
     }
 
     if (task.priority === "Medium") {
-
       li.style.borderLeft =
         "6px solid orange";
     }
 
     if (task.priority === "Low") {
-
       li.style.borderLeft =
         "6px solid green";
     }
@@ -173,25 +158,25 @@ function displayTasks() {
     editBtn.onclick =
       function () {
 
-      let updatedText =
-        prompt(
-          "Edit Task",
-          task.text
-        );
+        let updatedText =
+          prompt(
+            "Edit Task",
+            task.text
+          );
 
-      if (
-        updatedText !== null &&
-        updatedText.trim() !== ""
-      ) {
+        if (
+          updatedText !== null &&
+          updatedText.trim() !== ""
+        ) {
 
-        tasks[index].text =
-          updatedText.trim();
+          tasks[index].text =
+            updatedText.trim();
 
-        saveTasks();
+          saveTasks();
 
-        displayTasks();
-      }
-    };
+          displayTasks();
+        }
+      };
 
     let deleteBtn =
       document.createElement("button");
@@ -202,12 +187,12 @@ function displayTasks() {
     deleteBtn.onclick =
       function () {
 
-      tasks.splice(index, 1);
+        tasks.splice(index, 1);
 
-      saveTasks();
+        saveTasks();
 
-      displayTasks();
-    };
+        displayTasks();
+      };
 
     leftDiv.appendChild(
       checkbox
@@ -242,7 +227,6 @@ function updateProgress() {
   let percentage = 0;
 
   if (totalTasks > 0) {
-
     percentage =
       (completedTasks / totalTasks)
       * 100;
@@ -258,6 +242,16 @@ function updateProgress() {
   ).innerText =
     Math.round(percentage)
     + "% Completed";
+
+  document.getElementById(
+    "totalTasks"
+  ).innerText =
+    totalTasks;
+
+  document.getElementById(
+    "completedTasks"
+  ).innerText =
+    completedTasks;
 }
 
 function updateWater() {
@@ -266,13 +260,14 @@ function updateWater() {
     "waterStatus"
   ).innerText =
     water +
-    " / 10 Glasses Completed";
+    " / " +
+    waterGoal +
+    " Glasses Completed";
 
   let percentage =
-    (water / 10) * 100;
+    (water / waterGoal) * 100;
 
   if (percentage > 100) {
-
     percentage = 100;
   }
 
@@ -280,11 +275,18 @@ function updateWater() {
     "waterProgress"
   ).style.width =
     percentage + "%";
+
+  document.getElementById(
+    "waterStat"
+  ).innerText =
+    water +
+    "/" +
+    waterGoal;
 }
 
 function drinkWater() {
 
-  if (water < 10) {
+  if (water < waterGoal) {
 
     water++;
 
@@ -292,7 +294,7 @@ function drinkWater() {
 
     updateWater();
 
-    if (water === 10) {
+    if (water === waterGoal) {
 
       alert(
         "Daily Water Goal Completed!"
@@ -345,13 +347,13 @@ setInterval(() => {
   let currentTime =
     now.getHours()
       .toString()
-      .padStart(2, '0')
+      .padStart(2, "0")
     +
     ":"
     +
     now.getMinutes()
       .toString()
-      .padStart(2, '0');
+      .padStart(2, "0");
 
   tasks.forEach(task => {
 
@@ -369,8 +371,8 @@ setInterval(() => {
       );
 
       alert(
-        "Reminder: "
-        + task.text
+        "Reminder: " +
+        task.text
       );
 
       task.notified = true;

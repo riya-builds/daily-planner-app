@@ -5,8 +5,7 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Daily Planner</title>
 
@@ -22,41 +21,74 @@
 
     <div class="top-bar">
 
-      <h1>Daily Planner</h1>
+      <div>
+
+        <h1>📅 Daily Planner</h1>
+
+        <p>
+          Stay focused and organized every day
+        </p>
+
+      </div>
 
       <button onclick="toggleDarkMode()">
-        Dark Mode
+        🌙 Dark Mode
       </button>
 
     </div>
-
+    
+    <div class="stats-container">
+      
+      <div class="stat-card">
+        <h3>Total Tasks</h3>
+        <p id="totalTasks">0</p>
+      </div>
+      
+      <div class="stat-card">
+        
+        <h3>Completed</h3>
+        
+        <p id="completedTasks">0</p>
+      
+      </div>
+      
+      <div class="stat-card">
+        <h3>Water Goal</h3>
+        <p id="waterStat">0/10</p>
+      </div>
+    </div>
+    
     <div class="task-input">
 
-      <input type="text"
-             id="taskInput"
-             placeholder="Enter task">
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter your task"
+      >
 
-      <input type="time"
-             id="taskTime">
+      <input
+        type="time"
+        id="taskTime"
+      >
 
       <select id="taskPriority">
 
         <option value="High">
-          High
+          🔴 High
         </option>
 
         <option value="Medium">
-          Medium
+          🟡 Medium
         </option>
 
         <option value="Low">
-          Low
+          🟢 Low
         </option>
 
       </select>
 
       <button onclick="addTask()">
-        Add
+        ➕ Add Task
       </button>
 
     </div>
@@ -64,19 +96,19 @@
     <input
       type="text"
       id="searchInput"
-      placeholder="Search task..."
+      placeholder="🔍 Search task..."
       onkeyup="displayTasks()"
     >
 
-    <br><br>
+    <br>
 
     <button onclick="clearCompleted()">
-      Clear Completed Tasks
+      ✅ Clear Completed Tasks
     </button>
 
     <div class="progress-section">
 
-      <h3>Progress</h3>
+      <h3>📊 Daily Progress</h3>
 
       <div class="progress-bar">
 
@@ -94,7 +126,7 @@
 
     <hr>
 
-    <h2>Water Tracker</h2>
+    <h2>💧 Water Tracker</h2>
 
     <p id="waterStatus">
       0 / 10 Glasses Completed
@@ -109,11 +141,11 @@
     <br>
 
     <button onclick="drinkWater()">
-      Drink Water
+      💧 Drink Water
     </button>
 
     <button onclick="resetWater()">
-      Reset Water
+      🔄 Reset Water
     </button>
 
   </div>
